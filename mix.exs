@@ -19,4 +19,3 @@ defmodule Budgie.MixProject do
     ]
   end
 end
-

@@ -20,7 +20,7 @@ defmodule Core.MixProject do
 
   def application do
     [
-      extra_applications: [:logger],
+      extra_applications: [:logger, :eex],
       mod: {Core.Application, []}
     ]
   end
@@ -29,6 +29,15 @@ defmodule Core.MixProject do
   defp elixirc_paths(_), do: ["lib"]
 
   defp deps do
-    []
+    [
+      # HTTP Client
+      {:finch, "~> 0.16"},
+
+      # JSON parser
+      {:jason, "~> 1.4"},
+
+      # Testing
+      {:mox, "~> 1.0", only: :test}
+    ]
   end
 end

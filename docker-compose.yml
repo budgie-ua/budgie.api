@@ -9,12 +9,12 @@ services:
     container_name: application
     depends_on:
       - postgres
-    environment:
-      - DB_HOST=postgres
+    env_file:
+      - .env.dev
     stdin_open: true
     tty: true
     volumes:
-      - .:/budgie.api:cached,Z
+      - .:/budgie.api:cached
 
   postgres:
     image: postgres:15.2-alpine

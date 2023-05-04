@@ -1,5 +1,9 @@
 [
-  inputs: ["mix.exs", "config/*.exs"],
-  subdirectories: ["apps/*"],
+  inputs: [
+    "mix.exs",
+    "apps/*/mix.exs",
+    "apps/*/priv/*/migrations/*.exs",
+    "apps/*/{config,lib,test}/**/*.{ex,exs}"
+  ],
   line_length: 120
 ]

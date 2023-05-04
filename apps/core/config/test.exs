@@ -1,6 +1,7 @@
 import Config
 
-config :logger, level: :warn
-
 config :core,
-  google_vision_client: GoogleVisionMock
+  env: Mix.env(),
+  http_client: HTTPMock
+
+config :logger, level: :warn

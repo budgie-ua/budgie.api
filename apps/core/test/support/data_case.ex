@@ -18,12 +18,12 @@ defmodule Core.DataCase do
 
   # alias Ecto.Adapters.SQL.Sandbox
 
-  # using do
-  #   quote do
-  #     import Core.DataCase
-  #     import Core.Factory
-  #   end
-  # end
+  using do
+    quote do
+      import Core.DataCase
+      import Core.Expectations.HTTP
+    end
+  end
 
   # setup tags do
   #   :ok = Sandbox.checkout(Core.Repo)

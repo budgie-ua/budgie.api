@@ -10,7 +10,7 @@ defmodule Core.MixProject do
       config_path: "../../config/config.exs",
       deps_path: "../../deps",
       lockfile: "../../mix.lock",
-      elixirc_paths: elixirc_paths(Mix.env),
+      elixirc_paths: elixirc_paths(Mix.env()),
       elixirc_options: [warnings_as_errors: true],
       compilers: Mix.compilers(),
       start_permanent: Mix.env() == :prod,
@@ -35,6 +35,9 @@ defmodule Core.MixProject do
 
       # JSON parser
       {:jason, "~> 1.4"},
+
+      # Date/Time helper
+      {:timex, "~> 3.7"},
 
       # Testing
       {:mox, "~> 1.0", only: :test}

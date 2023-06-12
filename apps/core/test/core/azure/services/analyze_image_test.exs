@@ -11,7 +11,7 @@ defmodule Core.Azure.Services.AnalyzeImageTest do
 
   describe "when file is an image" do
     test "returns result link" do
-      image = File.read!("test/support/assets/receipt.jpg")
+      image = File.read!("test/support/assets/input/silpo_receipt.jpg")
       expect_http_run(:ok, %{headers: [{"operation-location", "https://cognitiveservices.azure.com"}], body: ""})
 
       assert {:ok, "https://cognitiveservices.azure.com"} = AnalyzeImage.call(image)
@@ -20,8 +20,13 @@ defmodule Core.Azure.Services.AnalyzeImageTest do
 
   describe "when file is a doc" do
     test "returns error" do
-      doc = File.read!("test/support/assets/doc.txt")
-      expect_http_run(:error, %{headers: [], body: "{\"error\":{\"code\":\"InvalidRequest\",\"message\":\"Invalid request.\",\"innererror\":{\"code\":\"InvalidContent\",\"message\":\"The file is corrupted or format is unsupported. Refer to documentation for the list of supported formats.\"}}}"})
+      doc = File.read!("test/support/assets/input/receipt.txt")
+
+      expect_http_run(:error, %{
+        headers: [],
+        body:
+          "{\"error\":{\"code\":\"InvalidRequest\",\"message\":\"Invalid request.\",\"innererror\":{\"code\":\"InvalidContent\",\"message\":\"The file is corrupted or format is unsupported. Refer to documentation for the list of supported formats.\"}}}"
+      })
 
       assert {:error, %{"error" => %{"code" => "InvalidRequest"}}} = AnalyzeImage.call(doc)
     end

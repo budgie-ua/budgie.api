@@ -27,7 +27,7 @@ defmodule Core.HTTP do
   """
   @spec run(method :: Finch.Request.method(), url :: binary(), headers :: list(), body :: binary()) ::
           {:ok, Finch.Response.t()} | {:error, Exception.t()}
-  def run(method, url, headers, body) do
+  def run(method, url, headers \\ [], body \\ nil) do
     method
     |> Finch.build(url, headers, body)
     |> Finch.request(Core.Finch)

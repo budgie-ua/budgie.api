@@ -30,6 +30,10 @@ defmodule Core.MixProject do
 
   defp deps do
     [
+      # Database
+      {:ecto_sql, "~> 3.10"},
+      {:postgrex, "~> 0.17"},
+
       # HTTP Client
       {:finch, "~> 0.16"},
 

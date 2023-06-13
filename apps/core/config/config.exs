@@ -2,7 +2,8 @@ import Config
 
 config :core,
   env: Mix.env(),
-  http_client: Core.HTTP
+  http_client: Core.HTTP,
+  ecto_repos: [Core.Repo]
 
 config :core, :azure,
   name: System.get_env("AZURE_NAME", ""),

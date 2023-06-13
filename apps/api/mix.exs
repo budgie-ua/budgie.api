@@ -14,7 +14,9 @@ defmodule Api.MixProject do
       elixirc_options: [warnings_as_errors: true],
       compilers: Mix.compilers(),
       start_permanent: Mix.env() == :prod,
-      deps: deps()
+      deps: deps(),
+      test_coverage: [tool: ExCoveralls],
+      preferred_cli_env: [coveralls: :test]
     ]
   end
 

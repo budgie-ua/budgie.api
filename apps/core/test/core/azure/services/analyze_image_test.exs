@@ -12,7 +12,7 @@ defmodule Core.Azure.Services.AnalyzeImageTest do
   describe "when file is an image" do
     test "returns result link" do
       image = File.read!("test/support/assets/input/silpo_receipt.jpg")
-      expect_http_run(:ok, %{headers: [{"operation-location", "https://cognitiveservices.azure.com"}], body: ""})
+      expect_http_post(:ok, %{headers: [{"operation-location", "https://cognitiveservices.azure.com"}], body: ""})
 
       assert {:ok, "https://cognitiveservices.azure.com"} = AnalyzeImage.call(image)
     end
@@ -22,7 +22,7 @@ defmodule Core.Azure.Services.AnalyzeImageTest do
     test "returns error" do
       doc = File.read!("test/support/assets/input/receipt.txt")
 
-      expect_http_run(:error, %{
+      expect_http_post(:error, %{
         headers: [],
         body:
           "{\"error\":{\"code\":\"InvalidRequest\",\"message\":\"Invalid request.\",\"innererror\":{\"code\":\"InvalidContent\",\"message\":\"The file is corrupted or format is unsupported. Refer to documentation for the list of supported formats.\"}}}"
@@ -34,7 +34,7 @@ defmodule Core.Azure.Services.AnalyzeImageTest do
 
   describe "with timeout error" do
     test "returns {:error, %Mint.TransportError{reason: :timeout}}" do
-      expect_http_run(:error, :timeout)
+      expect_http_post(:error, :timeout)
 
       assert {:error, %Mint.TransportError{reason: :timeout}} = AnalyzeImage.call("")
     end

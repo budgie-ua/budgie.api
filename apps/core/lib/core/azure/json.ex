@@ -1,9 +1,9 @@
 defmodule Core.Azure.JSON do
   @moduledoc false
 
-  @spec parse(binary()) :: map() | {:error, any()}
+  @spec parse(binary()) :: {:ok, map()} | {:error, any()}
   def parse({:ok, %{"status" => "succeeded"} = data}) do
-    process_documents(data["analyzeResult"]["documents"])
+    {:ok, process_documents(data["analyzeResult"]["documents"])}
   end
 
   def parse({:ok, data}),

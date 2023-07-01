@@ -14,7 +14,7 @@ defmodule Core.Azure.Services.AnalyzeResult do
            headers()
          ) do
       {:ok, %{body: body, status: status}} when status in @success_http_statuses ->
-        {:ok, body |> Jason.decode() |> JSON.parse()}
+        body |> Jason.decode() |> JSON.parse()
 
       {:ok, %{body: body}} ->
         {:error, Jason.decode!(body)}

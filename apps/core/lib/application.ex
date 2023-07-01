@@ -5,6 +5,7 @@ defmodule Core.Application do
 
   def start(_type, _args) do
     children = [
+      Core.Repo,
       {Finch, name: Core.Finch}
     ]
 
